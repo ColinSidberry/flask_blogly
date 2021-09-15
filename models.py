@@ -27,7 +27,7 @@ class User(db.Model):
                     nullable=False)
     last_name = db.Column(db.String(50),
                     nullable=False)
-    img_url = db.Column(db.String(5000), nullable = False, default = DEFAULT_IMG_URL) 
+    img_url = db.Column(db.String(5000), nullable = True, default = DEFAULT_IMG_URL) 
     #ToDo - check for valid img URL
     #Question - when given a default, should we be explicit and set nullable to false
 

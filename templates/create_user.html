@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{{ title }}
+{% endblock %}
+
+{% block content %}
+    <form action="/users/new" method="POST" class="container">
+        <div class="form-group">
+            <label> First Name</label>
+            <input type="text" name="first_name" required id="first_name" placeholder="Enter a first name">
+        </div>
+        <!-- question: why did we need to remove the label "fors" to grab the correct data? -->
+        <div class="form-group">
+            <label> Last Name</label>
+            <input type="text" name="last_name" required id="last_name" placeholder="Enter a last name">
+        </div>
+        <div class="form-group">
+            <label>Image URL</label>
+            <input type="text" name="img_url" id="img_url" placeholder="Provide an image of this user">
+        </div>
+        <button type="submit">Add</button>
+    </form>
+{% endblock %}
+

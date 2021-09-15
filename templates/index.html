@@ -12,6 +12,9 @@
         <li><a href="users/{{ user.id }}">{{ user.first_name }} {{ user.last_name }}</a></li>
         {% endfor %}
     </ul>
-    <button class="btn" type="submit">Add user</button>
+    <!-- question: is the below form best practice for going to new page? -->
+    <form action="/users/new"> 
+        <button class="btn" type="submit" action="/users/new">Add user</button>
+    </form>
 </div>
 {% endblock %}
