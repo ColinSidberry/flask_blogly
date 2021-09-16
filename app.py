@@ -61,3 +61,15 @@ def show_user_details(user_id):
         title = f"{user.first_name} {user.last_name}",
         img_url = user.img_url)
 
+@app.get('/user/<int:user_id>/edit')
+def edit_user(user_id):
+    user = User.query.get(user_id)
+    title = "Edit a user"
+    return render_template("edit_user.html",
+        user = user, 
+        title = title)
+        #Question: in terms of best practice, should 
+        # we just pass the user object or specificy each parameter 
+        # that we need in the app.py
+
+# @app.post('') START HERE
