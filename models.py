@@ -28,30 +28,22 @@ class User(db.Model):
     last_name = db.Column(db.String(50),
                     nullable=False)
     img_url = db.Column(db.String(5000), nullable = False, default = DEFAULT_IMG_URL) 
-    #ToDo - check for valid img URL
-    #Question - when given a default, should we be explicit and set nullable to false
-    # Question 2: How default img to be triggered. Entering no img url from the frontend currently doesn't pull the default img
 
-    # Taken from morning demo
-    # def greet(self):
-    #     """Greet using name."""
+    def full_name(self):
+        return f"{self.first_name} {self.last_name}"
+   
+class Post(db.Model):
+    """Post."""
 
-    #     return f"I'm {self.name} the {self.species or 'thing'}"
+    __tablename__ = "posts"
 
-    # def feed(self, units=10):
-    #     """Nom nom nom."""
-
-    #     self.hunger -= units
-    #     self.hunger = max(self.hunger, 0)
-
-    # def __repr__(self):
-    #     """Show info about pet."""
-
-    #     p = self
-    #     return f"<Pet {p.id} {p.name} {p.species} {p.hunger}>"
-
-    # @classmethod
-    # def get_by_species(cls, species):
-    #     """Get all pets matching that species."""
-
-    #     return cls.query.filter_by(species=species).all()
+    id = db.Column(db.Integer,
+                   primary_key=True,
+                   autoincrement=True)
+    title = db.Column(db.String(50),
+                    nullable=False)
+    content = db.Column(db.Text(),
+                    nullable=False)
+    created_at = db.DateTime(timezone = True)
+    user_id = db.Relationship('User')
+   

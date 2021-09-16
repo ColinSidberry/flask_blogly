@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{{ post.title }}
+{% endblock %}
+
+{% block content %}
+    <form action="/posts/{{post-id}}/edit" method="POST" class="container">
+        <div class="form-group">
+            <label> Title</label>
+            <input type="text" name="post_title" required id="post_title" value="{{post.title}}">
+        </div>
+        <!-- question: why did we need to remove the label "fors" to grab the correct data? -->
+        <div class="form-group">
+            <label> Content</label>
+            <textarea type="text" name="post_content" class="form-control" required id="post_content" value="{{post.content}}">
+        </div>
+        <div class="row">
+            <button type="submit" class="btn btn-success">Save</button>
+        </div>
+    </form>
+    <div class="container">
+        <div class="row">
+            <a class="btn btn-light" href="/users/{{ user.id }}">
+                Cancel
+            </a>
+        </div>
+    </div>
+{% endblock %}
