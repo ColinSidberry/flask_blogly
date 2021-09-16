@@ -20,23 +20,25 @@ class UserViewsTestCase(TestCase):
     """Test for views for Users."""
 
     def setUp(self):
+        User.query.delete()
         # Question: can you programatically create a tables from the flask_test.py file
+        # Note: create a function that calls the seed file
         user = User(first_name="Lizzy", last_name="Ahler")
         db.session.add(user)
         db.session.commit()
 
-        self.use_id = user.id
+        self.user_id = user.id
 
     def tearDown(self):
         db.session.rollback()
-        # ToDo/Question: what does this do again?
 
     def test_home_route(self):
         with app.test_client() as client:
-            resp = client.get('/')
+            resp = client.get('/', follow_redirects = True)
+            html = resp.get_data(as_text=True)
 
-            self.assertEqual(resp.status_code, 302)
-            self.assertEqual(resp.location, 'http://localhost/users')
+            self.assertEqual(resp.status_code, 200)
+            self.assertIn('Lizzy', html)
 
     def test_user_list_page(self):
         with app.test_client() as client:
@@ -44,4 +46,24 @@ class UserViewsTestCase(TestCase):
             html = resp.get_data(as_text=True)
 
             self.assertEqual(resp.status_code, 200)
-            self.assertIn('<form action="/users/new">' ,html)
+            self.assertIn('Lizzy', html)
+
+    def test_render_new_user_page(self):
+        with app.test_client() as client:
+            resp = client.get('/users/new')
+            html = resp.get_data(as_text=True)
+
+            self.assertEqual(resp.status_code, 200)
+            self.assertIn('<button type="submit">Add</button>', html)
+
+    def test_add_new_user(self):
+        with app.test_client() as client:
+            resp = client.post('/users/new', 
+                data={'first_name': 'Colin', 
+                        'last_name': 'Sidberry',
+                        'img_url': ''}, follow_redirects = True)
+            html = resp.get_data(as_text=True)
+
+            self.assertEqual(resp.status_code, 200)
+            self.assertIn('Colin', html)
+        #Question: how do we use the session variable to test if data made it to the db
