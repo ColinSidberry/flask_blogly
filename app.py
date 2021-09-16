@@ -39,7 +39,7 @@ def add_user():
     first_name = request.form['first_name']
     last_name = request.form['last_name']
     img_url = request.form.get('img_url')
-    breakpoint()
+    # breakpoint()
     new_user = User(
         first_name=first_name, 
         last_name=last_name, 
@@ -53,4 +53,11 @@ def add_user():
     return redirect('/users')
 
 
+@app.get('/users/<int:user_id>')
+def show_user_details(user_id):
+    user = User.query.get(user_id)
+    return render_template('user_detail.html',
+        user_id = user_id,
+        title = f"{user.first_name} {user.last_name}",
+        img_url = user.img_url)
 

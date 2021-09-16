@@ -9,7 +9,7 @@
 <div class="container">
     <ul>
         {% for user in users %}
-        <li><a href="users/{{ user.id }}">{{ user.first_name }} {{ user.last_name }}</a></li>
+        <li><a href="/users/{{ user.id }}">{{ user.first_name }} {{ user.last_name }}</a></li>
         {% endfor %}
     </ul>
     <!-- question: is the below form best practice for going to new page? -->

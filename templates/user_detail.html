@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-4">
+            <img src="{{ img_url }}">
+        </div>
+        <div class="col-8">
+            <div class="row">
+                {{ title }}
+            </div>
+            <div class="row">
+                <form action="/users/{{ user_id }}/edit">
+                    <button class="btn btn-primary">Edit</button>
+                </form>
+                <form action="/users/{{user_id}}/delete" method="POST">
+                    <button class="btn btn-danger">Delete</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
