@@ -5,19 +5,20 @@
 {% endblock %}
 
 {% block content %}
-    <form action="/users/{{user.id}}/posts/new" method="POST" class="container">
-        <div class="form-group">
-            <label>Title</label>
-            <input type="text" name="post_title" required id="post_title">
-        </div>
-        <!-- question: why did we need to remove the label "fors" to grab the correct data? -->
-        <div class="form-group">
-            <label>Content</label>
-            <textarea type="text" name="post_content" class="form-control" required id="post_content">
-        </div>
-        <button type="submit">Add</button>
-        <a class="btn btn-light" href="/users/{{ user.id }}">
-           Cancel
-        </a>
-    </form>
+<form action="/users/{{user.id}}/posts/new" method="POST" class="container">
+    <div class="form-group">
+        <label>Title</label>
+        <input type="text" name="post_title" required id="post_title">
+    </div>
+    <!-- question: why did we need to remove the label "fors" to grab the correct data? -->
+    <div class="form-group">
+        <label>Content</label>
+        <textarea type="text" name="post_content" class="form-control" required id="post_content">
+            </textarea>
+    </div>
+    <a class="btn btn-info" href="/users/{{ user.id }}">
+        Cancel
+    </a>
+    <button class="btn btn-success" type="submit">Add</button>
+</form>
 {% endblock %}

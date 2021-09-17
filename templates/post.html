@@ -6,20 +6,20 @@
     <div class="row">
         <div>
             <div class="row">
-                {{ title }}
+                <h1>{{ post.title }}</h1>
             </div>
             <div class="row">
-                {{ content }}
+                <p>{{ post.content }}</p>
             </div>
             <div class='row'>
-                {{ author }}
+                <p>By {{ user.full_name() }}</p>
             </div>
             <div class="row">
-                <a href="/users/{{ user.id }}">Cancel</a>
+                <a class="btn btn-warning" href="/users/{{ user.id }}">Cancel</a>
                 <form action="/posts/{{post.id}}/edit">
                     <button class="btn btn-primary">Edit</button>
                 </form>
-                <form action="/posts/{{ post-id }}/delete" method="POST">
+                <form action="/posts/{{ post.id }}/delete" method="POST">
                     <button class="btn btn-danger">Delete</button>
                 </form>
             </div>
