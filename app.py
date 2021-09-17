@@ -181,4 +181,4 @@ def delete_post(post_id):
     db.session.commit()
 
 
-    return redirect(f'/posts/{post_id}')
+    return redirect(f'/users/{user.id}')
